@@ -1,14 +1,13 @@
 {
   "name": "auto-commit-bot",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Helper for your commit",
   "main": "src/main.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run acb -- -e",
-    "acb": "ts-node src/main.ts", 
-    "e": "npm run acb -- -e", 
-    "d": "npm run acb -- -d"
+    "acb": "ts-node src/main.ts",
+  "e": "npm run acb -- -e",
+  "d": "npm run acb -- -d"
   },
   "keywords": [
     "auto-commit-bot",

@@ -77,7 +77,7 @@ async function main() {
     // Initialisation de SimpleGit
     const git: SimpleGit = require("simple-git")();
 
-    // Nombre de modifications
+    // nbr modif
     const modificationsCount = await countModifications(git);
     if (modificationsCount < 1) {
       console.error(

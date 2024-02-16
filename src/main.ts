@@ -1,6 +1,5 @@
 import * as commander from "commander";
 import { SimpleGit } from "simple-git";
-import { execSync } from "child_process";
 import { isGitRepository, countModifications } from "./gitFunctions";
 import {
   toggleBotAction,

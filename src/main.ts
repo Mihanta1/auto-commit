@@ -95,5 +95,5 @@ async function main() {
   }
 }
 
-// Appeler la fonction principale du bot
+
 main();

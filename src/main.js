@@ -40,7 +40,7 @@ const configFunctions_1 = require("./configFunctions");
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         const program = new commander.Command();
-        //program.version("1.0.0");
+        program.version("1.0.0");
         program
             .option("-e, --enable", "Enable bot action")
             .option("-d, --disable", "Disable bot action");
@@ -54,10 +54,6 @@ function main() {
         if (options.disable) {
             (0, configFunctions_1.toggleBotAction)(false);
             console.log("Bot Action is currently disabled. Exiting ...");
-            return;
-        }
-        if ((0, configFunctions_1.isBotActionDisabled)()) {
-            console.log("Bot action is currently disabled. Exiting...");
             return;
         }
         if (!(0, gitFunctions_1.isGitRepository)()) {

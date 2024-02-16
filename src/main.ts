@@ -8,7 +8,7 @@ import { toggleBotAction, getGitCredentials, configureGitCredentials, isBotActio
 async function main() {
  
   const program = new commander.Command();
-  //program.version("1.0.0");
+  program.version("1.0.0");
 
   program
     .option("-e, --enable", "Enable bot action")
@@ -18,22 +18,18 @@ async function main() {
   const options = program.opts();
 
   if (options.enable) {
-    toggleBotAction(true);
+    toggleBotAction(true)
     console.log("Bot action is currently enabled");
     return;
   }
 
   if (options.disable) {
-    toggleBotAction(false);
+    toggleBotAction(false)
     console.log("Bot Action is currently disabled. Exiting ...");
     return;
   }
 
-  if (isBotActionDisabled()) {
-    console.log("Bot action is currently disabled. Exiting...");
-    return;
-  }
-
+  
   if (!isGitRepository()) {
     console.log("This directory is not a Git repository. Exiting...");
     return;

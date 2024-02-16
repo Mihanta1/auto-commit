@@ -48,7 +48,7 @@ async function main() {
     toggleBotAction(true);
     console.log("Bot action is currently enabled");
 
-    // Boucle infinie pour maintenir le processus en cours d'exécution
+    /
     while (!isBotActionDisabled()) {
       await travailler();
       await new Promise((resolve) => setTimeout(resolve, 10000));

@@ -1,23 +1,23 @@
-Auto-Commit Bot
+## Auto-Commit Bot
 Auto-Commit Bot is a handy tool for automating Git actions in your projects. This bot allows you to automatically perform operations such as committing changes and pushing to a remote repository based on the modifications you make to your code.
 
-Installation
+# Installation
 To install Auto-Commit Bot, you can run the following command in your terminal:
 
-npm install -g auto-commit
+` npm install -g auto-commit `
 
 This will install the bot globally on your system.
 
-Usage
-To activate the bot in a Git repository, you can run the following command in your project directory:
+# Usage
+**To activate** the bot in a Git repository, you can run the following command in your project directory:
 
-auto-commit -e
+` auto-commit -e `
 
 This will activate the bot, and it will begin monitoring changes to your files.
 
-To deactivate the bot, you can run the following command:
+**To deactivate** the bot, you can run the following command:
 
-auto-commit -d
+` auto-commit -d `
 
 Make sure to be in your project directory when running these commands.
 

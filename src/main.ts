@@ -57,14 +57,14 @@ async function main() {
     console.log("Bot action is currently disabled. Exiting.......");
   }
 
-  // Fonction pour effectuer le travail du bot
+  
   async function travailler() {
     if (!isGitRepository()) {
       console.log("This directory is not a Git repository. Exiting........");
       return;
     }
 
-    // Configuration des informations d'identification Git
+    //identification Git
     await configureGitCredentials(
       getGitCredentials().username,
       getGitCredentials().password

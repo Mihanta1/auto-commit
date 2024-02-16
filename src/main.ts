@@ -79,9 +79,9 @@ async function main() {
 
     // Nombre de modifications
     const modificationsCount = await countModifications(git);
-    if (modificationsCount < 3) {
+    if (modificationsCount < 1) {
       console.error(
-        "Number of modifications is less than 3. Please make at least 3 modification before committing."
+        "Number of modifications is less than 1. Please make at least 1 modification before committing."
       );
       return;
     }

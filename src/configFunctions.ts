@@ -1,5 +1,5 @@
 import { SimpleGit } from "simple-git";
-
+import { execSync } from "child_process";
 // Fonction pour récupérer les informations d'identification Git
 export function getGitCredentials(): { username: string; password: string } {
   const username = process.env.GIT_USERNAME || "default-username";
@@ -24,3 +24,4 @@ export function toggleBotAction(enable: boolean) {
 export function isBotActionDisabled(): boolean {
   return process.env.BOT_ACTION_DISABLED === "true";
 }
+

@@ -1,14 +1,14 @@
 {
-  "name": "auto-commit",
+  "name": "flow-helper",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Helper for your workflow",
+  "main": "src/main.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node src/main.ts"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["helper","flow","flow-helper"],
+  "author": "Narovana Mihanta",
   "license": "ISC",
   "dependencies": {
     "@octokit/rest": "^20.0.2",

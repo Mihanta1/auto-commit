@@ -2,10 +2,11 @@ import * as commander from "commander";
 import { SimpleGit } from "simple-git";
 import { execSync } from "child_process";
 import { isGitRepository, countModifications } from "./gitFunctions";
-import { toggleBotAction, getGitCredentials, configureGitCredentials, isBotActionDisabled } from "./configFunctions";
+import { toggleBotAction, getGitCredentials, configureGitCredentials, isBotActionDisabled} from "./configFunctions";
 
 // Fonction principale du bot
 async function main() {
+ 
   const program = new commander.Command();
   program.version("1.0.0");
 

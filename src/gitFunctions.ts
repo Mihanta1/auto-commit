@@ -1,7 +1,7 @@
 import { SimpleGit } from "simple-git";
 import { execSync } from "child_process";
 
-// Fonction pour vérifier si le répertoire est un dépôt Git
+// git repo ou pas
 export function isGitRepository(): boolean {
   try {
     execSync("git rev-parse --is-inside-work-tree");
@@ -11,7 +11,7 @@ export function isGitRepository(): boolean {
   }
 }
 
-// Fonction pour compter le nombre de modifications dans les fichiers
+// nbr modif
 export async function countModifications(git: SimpleGit): Promise<number> {
   const diffSummary = await git.diffSummary();
   return diffSummary.files.length;

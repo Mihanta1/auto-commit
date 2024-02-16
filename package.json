@@ -5,9 +5,18 @@
   "main": "src/main.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node src/main.ts"
+    "start": "npm run acb -- -e",
+    "acb": "ts-node src/main.ts", 
+    "e": "npm run acb -- -e", 
+    "d": "npm run acb -- -d"
   },
-  "keywords": ["auto-commit-bot","acb","commit","auto-commit","bot"],
+  "keywords": [
+    "auto-commit-bot",
+    "acb",
+    "commit",
+    "auto-commit",
+    "bot"
+  ],
   "author": "mihanta",
   "license": "ISC",
   "dependencies": {

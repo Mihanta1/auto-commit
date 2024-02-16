@@ -21,7 +21,7 @@ async function main() {
   const options = program.opts();
 
   if (options.enable) {
-    await activaBot();
+    await activateBot();
     return;
   }
 

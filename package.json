@@ -1,5 +1,5 @@
 {
-  "name": "auto-commit",
+  "name": "auto-commit-bot",
   "version": "1.0.0",
   "description": "Helper for your commit",
   "main": "src/main.ts",
@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node src/main.ts"
   },
-  "keywords": ["auto","commit","auto-commit","bot"],
+  "keywords": ["auto-commit-bot","acb","commit","auto-commit","bot"],
   "author": "mihanta",
   "license": "ISC",
   "dependencies": {

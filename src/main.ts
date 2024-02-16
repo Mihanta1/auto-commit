@@ -21,7 +21,7 @@ async function main() {
   const options = program.opts();
 
   if (options.enable) {
-    await activerBot();
+    await activaBot();
     return;
   }
 
@@ -43,8 +43,8 @@ async function main() {
     return;
   }*/
 
-  // Fonction pour activer le bot
-  async function activerBot() {
+  
+  async function activateBot() {
     toggleBotAction(true);
     console.log("Bot action is currently enabled");
 

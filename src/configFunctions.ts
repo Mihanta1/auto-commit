@@ -8,7 +8,10 @@ export function getGitCredentials(): { username: string; password: string } {
 }
 
 //credentials Git
-export async function configureGitCredentials(username: string, password: string) {
+export async function configureGitCredentials(
+  username: string,
+  password: string
+) {
   const git: SimpleGit = require("simple-git")();
   await git.addConfig("user.name", username);
   await git.addConfig("user.password", password);
@@ -24,4 +27,3 @@ export function toggleBotAction(enable: boolean) {
 export function isBotActionDisabled(): boolean {
   return process.env.BOT_ACTION_DISABLED === "true";
 }
-

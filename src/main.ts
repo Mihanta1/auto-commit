@@ -2,7 +2,12 @@ import * as commander from "commander";
 import { SimpleGit } from "simple-git";
 import { execSync } from "child_process";
 import { isGitRepository, countModifications } from "./gitFunctions";
-import { toggleBotAction, getGitCredentials, configureGitCredentials, isBotActionDisabled } from "./configFunctions";
+import {
+  toggleBotAction,
+  getGitCredentials,
+  configureGitCredentials,
+  isBotActionDisabled,
+} from "./configFunctions";
 
 async function main() {
   const program = new commander.Command();
@@ -46,7 +51,7 @@ async function main() {
     // Boucle infinie pour maintenir le processus en cours d'exécution
     while (!isBotActionDisabled()) {
       await travailler();
-      await new Promise(resolve => setTimeout(resolve, 1000)); 
+      await new Promise((resolve) => setTimeout(resolve, 10000));
     }
 
     console.log("Bot action is currently disabled. Exiting.......");
@@ -74,9 +79,9 @@ async function main() {
 
     // Nombre de modifications
     const modificationsCount = await countModifications(git);
-    if (modificationsCount < 1) {
+    if (modificationsCount < 3) {
       console.error(
-        "Error: Number of modifications is less than 1. Please make at least 1 modification before committing."
+        "Number of modifications is less than 3. Please make at least 3 modification before committing."
       );
       return;
     }

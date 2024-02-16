@@ -11,6 +11,7 @@ export function isGitRepository(): boolean {
   }
 }
 
+
 // nbr modif
 export async function countModifications(git: SimpleGit): Promise<number> {
   const diffSummary = await git.diffSummary();

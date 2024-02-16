@@ -40,7 +40,7 @@ const configFunctions_1 = require("./configFunctions");
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         const program = new commander.Command();
-        program.version("1.0.0");
+        //program.version("1.0.0");
         program
             .option("-e, --enable", "Enable bot action")
             .option("-d, --disable", "Disable bot action");

@@ -43,6 +43,17 @@ async function main() {
     toggleBotAction(true);
     console.log("Bot action is currently enabled");
 
+    // Boucle infinie pour maintenir le processus en cours d'exécution
+    while (!isBotActionDisabled()) {
+      await travailler();
+      await new Promise(resolve => setTimeout(resolve, 1000)); 
+    }
+
+    console.log("Bot action is currently disabled. Exiting.......");
+  }
+
+  // Fonction pour effectuer le travail du bot
+  async function travailler() {
     if (!isGitRepository()) {
       console.log("This directory is not a Git repository. Exiting........");
       return;

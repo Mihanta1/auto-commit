@@ -33,54 +33,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const commander = __importStar(require("commander"));
-const simpleGit = require("simple-git");
-const { execSync } = require("child_process");
-// Fonction pour vérifier si le répertoire est un dépôt Git
-function isGitRepository() {
-    try {
-        execSync("git rev-parse --is-inside-work-tree");
-        return true;
-    }
-    catch (error) {
-        return false;
-    }
-}
-// Fonction pour récupérer les informations d'identification Git
-function getGitCredentials() {
-    const username = process.env.GIT_USERNAME || "default-username";
-    const password = process.env.GIT_PASSWORD || "default-password";
-    return { username, password };
-}
-// Fonction pour configurer les credentials Git
-function configureGitCredentials(username, password) {
-    return __awaiter(this, void 0, void 0, function* () {
-        const git = simpleGit();
-        yield git.addConfig("user.name", username);
-        yield git.addConfig("user.password", password);
-    });
-}
-// Fonction pour activer ou désactiver les actions du bot
-function toggleBotAction(enable) {
-    process.env.BOT_ACTION_DISABLED = enable ? "false" : "true";
-    console.log(`Bot action is now ${enable ? "enabled" : "disabled"}.`);
-}
-// Fonction pour détecter les erreurs dans les fichiers de code
-/*async function detectErrors() {
-    const eslint = new ESLint();
-   const results = await eslint.lintFiles([""]);
-    return results.some(
-      (result) => result.errorCount > 0 // Vérifie s'il y a des erreurs
-    );
-  }
-*/
-// Fonction pour compter le nombre de modifications dans les fichiers
-function countModifications() {
-    return __awaiter(this, void 0, void 0, function* () {
-        const git = simpleGit();
-        const diffSummary = yield git.diffSummary();
-        return diffSummary.files.length;
-    });
-}
+const child_process_1 = require("child_process");
+const gitFunctions_1 = require("./gitFunctions");
+const configFunctions_1 = require("./configFunctions");
 // Fonction principale du bot
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -92,66 +47,48 @@ function main() {
         program.parse(process.argv);
         const options = program.opts();
         if (options.enable) {
-            toggleBotAction(true);
-            console.log("Bot action is currently enable");
+            (0, configFunctions_1.toggleBotAction)(true);
+            console.log("Bot action is currently enabled");
             return;
         }
         if (options.disable) {
-            toggleBotAction(false);
+            (0, configFunctions_1.toggleBotAction)(false);
             console.log("Bot Action is currently disabled. Exiting ...");
             return;
         }
-        if (isBotActionDisabled()) {
+        if ((0, configFunctions_1.isBotActionDisabled)()) {
             console.log("Bot action is currently disabled. Exiting...");
             return;
         }
-        if (!isGitRepository()) {
+        if (!(0, gitFunctions_1.isGitRepository)()) {
             console.log("This directory is not a Git repository. Exiting...");
             return;
         }
-        const tsResult = execSync("tsc");
+        const tsResult = (0, child_process_1.execSync)("tsc");
         if (tsResult.toString().includes("error")) {
             console.error("Error: TypeScript code contains errors. Please fix the errors before committing.");
             return;
         }
-        function configureGitCredentials(username, password) {
-            return __awaiter(this, void 0, void 0, function* () {
-                const git = simpleGit();
-                yield git.addConfig("user.name", username);
-                yield git.addConfig("user.password", password);
-            });
-        }
-        // Dans la fonction main() :
-        yield configureGitCredentials(getGitCredentials().username, getGitCredentials().password);
-        if (isBotActionDisabled()) {
+        // Configuration des informations d'identification Git
+        yield (0, configFunctions_1.configureGitCredentials)((0, configFunctions_1.getGitCredentials)().username, (0, configFunctions_1.getGitCredentials)().password);
+        if ((0, configFunctions_1.isBotActionDisabled)()) {
             console.log("Bot action is currently disabled. Exiting...");
             return;
         }
-        // Vérifier s'il y a des erreurs dans les fichiers de code
-        /*if (await detectErrors()) {
-          console.error(
-            "Error: Code contains errors. Please fix the errors before committing."
-          );
-          return;
-        }
-      */
+        // Initialisation de SimpleGit
+        const git = require("simple-git")();
         // Compter le nombre de modifications dans les fichiers
-        const modificationsCount = yield countModifications();
+        const modificationsCount = yield (0, gitFunctions_1.countModifications)(git);
         if (modificationsCount < 1) {
-            console.error("Error: Number of modifications is less than 10. Please make at least 1 modifications before committing.");
+            console.error("Error: Number of modifications is less than 1. Please make at least 1 modification before committing.");
             return;
         }
         // Effectuer les actions Git
-        const git = simpleGit();
         yield git.add(".");
         yield git.commit("Automated commit from bot");
         yield git.push();
         console.log("Git actions performed successfully!");
     });
-}
-// Vérifier si l'action du bot est désactivée
-function isBotActionDisabled() {
-    return process.env.BOT_ACTION_DISABLED === "true";
 }
 // Appeler la fonction principale du bot
 main();

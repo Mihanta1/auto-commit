@@ -12,7 +12,6 @@ async function main() {
   const program = new commander.Command();
   program.version("1.0.0");
 
-  
   program
     .option("-e, --enable", "Enable bot action")
     .option("-d, --disable", "Disable bot action");

@@ -8,6 +8,7 @@ import {
   isBotActionDisabled,
 } from "./configFunctions";
 import { isGitRepository , countModifications } from "./gitFunctions";
+
 async function main() {
   const program = new commander.Command();
   program.version("1.0.0");
@@ -45,7 +46,7 @@ async function main() {
     return;
   }
 
-  async function toggleBot(enable : any) {
+  async function toggleBot(enable:any) {
     toggleBotAction(enable);
 
     while (!isBotActionDisabled()) {
@@ -75,11 +76,20 @@ async function main() {
       return;
     }
 
-    await git.add(".");
-    await git.commit("Automated commit from bot");
-    await git.push();
+    //ask user for commit coms
+    const readline = require('readline').createInterface({
+      input: process.stdin,
+      output: process.stdout
+    });
 
-    console.log("Git actions performed successfully!");
+    readline.question("Please enter the commit title: ", async (title:any) => {
+      await git.add(".");
+      await git.commit(title || "Automated commit from bot");
+      await git.push();
+
+      console.log("Git actions performed successfully!");
+      readline.close();
+    });
   }
 }
 

@@ -64,6 +64,7 @@ async function main() {
   }
 async function deactivateBor(){
   toggleBotAction(false)
+  
 }
   async function travailler() {
     if (!isGitRepository()) {

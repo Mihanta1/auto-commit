@@ -30,7 +30,7 @@ async function main() {
     .command('disable')
     .description('Disable bot action')
     .alias('d')
-    .action(() =>toggleBotAction(false))
+    .action(() =>deactivateBot())
 
 
   program.parse(process.argv);
@@ -42,7 +42,7 @@ async function main() {
   }
 
   if (argv.includes("-d") || argv.includes("--disable")) {
-    await de
+    await deactivateBot()
     return;
   }
 

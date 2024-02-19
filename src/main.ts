@@ -64,6 +64,7 @@ async function main() {
   }
 async function deactivateBot(){
   toggleBotAction(false)
+  
 
 }
   async function travailler() {

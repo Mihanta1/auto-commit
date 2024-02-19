@@ -31,7 +31,6 @@ async function main() {
     .description('Disable bot action')
     .alias('d')
     .action(() =>isBotActionDisabled(true))
-    
 
 
   program.parse(process.argv);

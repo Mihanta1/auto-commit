@@ -1,3 +1,5 @@
+import { argv } from "process";
+
 const commander = require("commander");
 const { isGitRepository, countModifications } = require("./gitFunctions");
 const {
@@ -18,15 +20,22 @@ async function main() {
     .option("-e, --enable", "Enable bot action")
     .option("-d, --disable", "Disable bot action");
     
-  program.parse(process.argv);
-  const args = process.argv.slice(2);
+  program
+    .command("enable")
+    .description("Enable bot action")
+    .alias("e")
+    .action(() => activateBot())
 
-  if (args.includes("-e") || args.includes("--enable")) {
+
+  program.parse(process.argv);
+
+
+  if (argv.includes("-e") || argv.includes("--enable")) {
     await activateBot();
     return;
   }
 
-  if (args.includes("-d") || args.includes("--disable")) {
+  if (argv.includes("-d") || argv.includes("--disable")) {
     console.log("Bot Action is currently disabled. Exiting ...");
     console.log("See you...");
     return;

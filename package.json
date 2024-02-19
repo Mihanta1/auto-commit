@@ -1,13 +1,12 @@
 {
-  "name": "@mih/-auto-commit-bot",
-  "version": "1.3.2",
+  "name": "auto-commit-bot",
+  "version": "1.3.3",
   "description": "Helper for your commit",
   "main": "src/main.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "start": "ts-node src/main.ts"
- 
   },
   "keywords": [
     "auto-commit-bot",

@@ -17,7 +17,7 @@ This will activate the bot, and it will begin monitoring changes to your files.
 
 **To deactivate** the bot, you can run the following command:
 
-` npm start -- -d `
+` npm start -- -d ` 
 
 Make sure to be in your project directory when running these commands.
 

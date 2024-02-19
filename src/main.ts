@@ -64,7 +64,11 @@ async function main() {
   }
 async function deactivateBot(){
   toggleBotAction(false)
-  
+  if (isBotActionDisabled()) {
+    console.log("Bot action is currently disabled. Exiting.......");
+    return;
+  }
+
 
 }
   async function travailler() {
@@ -78,10 +82,7 @@ async function deactivateBot(){
       getGitCredentials().password
     );
 
-    if (isBotActionDisabled()) {
-      console.log("Bot action is currently disabled. Exiting.......");
-      return;
-    }
+    
 
     const git = simpleGit();
 

@@ -19,22 +19,20 @@ async function main() {
   program
     .option("-e, --enable", "Enable bot action")
     .option("-d, --disable", "Disable bot action");
-    
+
   program
     .command("enable")
     .description("Enable bot action")
     .alias("e")
-    .action(() =>activateBot())
-  
-  program
-    .command('disable')
-    .description('Disable bot action')
-    .alias('d')
-    .action(() =>deactivateBot())
+    .action(() => activateBot());
 
+  program
+    .command("disable")
+    .description("Disable bot action")
+    .alias("d")
+    .action(() => deactivateBot());
 
   program.parse(process.argv);
-
 
   if (argv.includes("-e") || argv.includes("--enable")) {
     await activateBot();
@@ -42,7 +40,7 @@ async function main() {
   }
 
   if (argv.includes("-d") || argv.includes("--disable")) {
-    await deactivateBot()
+    await deactivateBot();
     return;
   }
 
@@ -61,15 +59,14 @@ async function main() {
 
     console.log("Bot action is currently disabled. Exiting.......");
   }
-async function deactivateBot(){
-  toggleBotAction(false)
-  if (isBotActionDisabled()) {
-    console.log("Bot action is currently disabled. Exiting.......");
-    return;
+  
+  async function deactivateBot() {
+    toggleBotAction(false);
+    if (isBotActionDisabled()) {
+      console.log("Bot action is currently disabled. Exiting.......");
+      return;
+    }
   }
-
-
-}
   async function travailler() {
     if (!isGitRepository()) {
       console.log("This directory is not a Git repository. Exiting........");
@@ -80,8 +77,6 @@ async function deactivateBot(){
       getGitCredentials().username,
       getGitCredentials().password
     );
-
-    
 
     const git = simpleGit();
 

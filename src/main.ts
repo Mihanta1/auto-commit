@@ -42,8 +42,7 @@ async function main() {
   }
 
   if (argv.includes("-d") || argv.includes("--disable")) {
-    console.log("Bot Action is currently disabled. Exiting ...");
-    console.log("See you...");
+    await de
     return;
   }
 

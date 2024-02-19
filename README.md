@@ -11,13 +11,13 @@ This will install the bot globally on your system.
 # Usage
 **To activate** the bot in a Git repository, you can run the following command in your project directory:
 
-` npm run acb -- -e `
+` npm start -- -e `
 
 This will activate the bot, and it will begin monitoring changes to your files.
 
 **To deactivate** the bot, you can run the following command:
 
-` npm run acb -- -d `
+` npm start -- -d `
 
 Make sure to be in your project directory when running these commands.
 

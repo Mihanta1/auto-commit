@@ -24,7 +24,7 @@ async function main() {
     .command("enable")
     .description("Enable bot action")
     .alias("e")
-    .action(() => t)
+    .action(() => toggleBotAction(true))
   
   program
     .command('disable')

@@ -25,6 +25,7 @@ async function main() {
     .description("Enable bot action")
     .alias("e")
     .action(() => activateBot())
+    
 
 
   program.parse(process.argv);

@@ -1,4 +1,3 @@
-#!/usr/bin/env ts-node
 import { argv } from "process";
 
 const commander = require("commander");

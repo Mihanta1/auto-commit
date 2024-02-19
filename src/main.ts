@@ -1,3 +1,4 @@
+#!/usr/bin/env ts-node
 import { argv } from "process";
 
 const commander = require("commander");
@@ -59,7 +60,7 @@ async function main() {
 
     console.log("Bot action is currently disabled. Exiting.......");
   }
-  
+
   async function deactivateBot() {
     toggleBotAction(false);
     if (isBotActionDisabled()) {

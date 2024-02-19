@@ -1,34 +1,32 @@
-import * as commander from "commander";
-import { SimpleGit } from "simple-git";
-import { isGitRepository, countModifications } from "./gitFunctions";
-import {
+const commander = require("commander");
+const { isGitRepository, countModifications } = require("./gitFunctions");
+const {
   toggleBotAction,
   getGitCredentials,
   configureGitCredentials,
   isBotActionDisabled,
-} from "./configFunctions";
+} = require("./configFunctions");
+const simpleGit = require("simple-git");
+
+type SimpleGit = any;
 
 async function main() {
   const program = new commander.Command();
   program.version("1.0.0");
 
   program
-    /*.option("-e, --enable", "Enable bot action")
-    .option("-d, --disable", "Disable bot action");*/
-    .command("-e")
-    .description("enable  bot action")
-    .action(() => activateBot());
-
+    .option("-e, --enable", "Enable bot action")
+    .option("-d, --disable", "Disable bot action");
+    
   program.parse(process.argv);
-  const options = program.opts();
+  const args = process.argv.slice(2);
 
-  if (process.argv.includes("-e")) {
+  if (args.includes("-e") || args.includes("--enable")) {
     await activateBot();
     return;
   }
 
-  if (options.disable) {
-    toggleBotAction(false);
+  if (args.includes("-d") || args.includes("--disable")) {
     console.log("Bot Action is currently disabled. Exiting ...");
     console.log("See you...");
     return;
@@ -38,12 +36,6 @@ async function main() {
     console.log("This directory is not a Git repository. Exiting........");
     return;
   }
-
-  /*const tsResult = execSync("tsc");
-  if (tsResult.toString().includes("error")) {
-    console.error("Error: TypeScript code contains errors. Please fix the errors before committing.");
-    return;
-  }*/
 
   async function activateBot() {
     toggleBotAction(true);
@@ -63,20 +55,18 @@ async function main() {
       return;
     }
 
-    //identification Git
     await configureGitCredentials(
       getGitCredentials().username,
       getGitCredentials().password
     );
+
     if (isBotActionDisabled()) {
       console.log("Bot action is currently disabled. Exiting.......");
       return;
     }
 
-    // Initialisation de SimpleGit
-    const git: SimpleGit = require("simple-git")();
+    const git = simpleGit();
 
-    // nbr modif
     const modificationsCount = await countModifications(git);
     if (modificationsCount < 1) {
       console.error(
@@ -85,7 +75,6 @@ async function main() {
       return;
     }
 
-    // Actions Git
     await git.add(".");
     await git.commit("Automated commit from bot");
     await git.push();

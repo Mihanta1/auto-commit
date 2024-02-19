@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "start": "ts-node src/main.ts -- -e"
+    "start": "ts-node src/main.ts"
+ 
   },
   "keywords": [
     "auto-commit-bot",

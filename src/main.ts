@@ -28,7 +28,9 @@ async function main() {
   
   program
     .command('disable')
-    .description('Disable ')
+    .description('Disable bot action')
+    .alias('d')
+    .a
 
 
   program.parse(process.argv);

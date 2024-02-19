@@ -4,7 +4,7 @@ Auto-Commit Bot is a handy tool for automating Git actions in your projects. Thi
 # Installation
 To install Auto-Commit-Bot, you can run the following command in your terminal:
 
-` npm install -g  `
+` npm install -g auto-commit-bot `
 
 This will install the bot globally on your system.
 

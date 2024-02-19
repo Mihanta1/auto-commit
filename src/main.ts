@@ -62,9 +62,9 @@ async function main() {
 
     console.log("Bot action is currently disabled. Exiting.......");
   }
-async function deactivateBor(){
+async function deactivateBot(){
   toggleBotAction(false)
-  
+
 }
   async function travailler() {
     if (!isGitRepository()) {

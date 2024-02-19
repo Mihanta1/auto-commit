@@ -1,17 +1,13 @@
 import { argv } from "process";
-
-const commander = require("commander");
-const { isGitRepository, countModifications } = require("./gitFunctions");
-const {
+import commander from "commander";
+import simpleGit from "simple-git";
+import {
   toggleBotAction,
   getGitCredentials,
   configureGitCredentials,
   isBotActionDisabled,
-} = require("./configFunctions");
-const simpleGit = require("simple-git");
-
-type SimpleGit = any;
-
+} from "./configFunctions";
+import { isGitRepository , countModifications } from "./gitFunctions";
 async function main() {
   const program = new commander.Command();
   program.version("1.0.0");
@@ -24,23 +20,23 @@ async function main() {
     .command("enable")
     .description("Enable bot action")
     .alias("e")
-    .action(() => activateBot());
+    .action(() => toggleBot(true));
 
   program
     .command("disable")
     .description("Disable bot action")
     .alias("d")
-    .action(() => deactivateBot());
+    .action(() => toggleBot(false));
 
   program.parse(process.argv);
 
   if (argv.includes("-e") || argv.includes("--enable")) {
-    await activateBot();
+    await toggleBot(true);
     return;
   }
 
   if (argv.includes("-d") || argv.includes("--disable")) {
-    await deactivateBot();
+    await toggleBot(false);
     return;
   }
 
@@ -49,34 +45,25 @@ async function main() {
     return;
   }
 
-  async function activateBot() {
-    toggleBotAction(true);
+  async function toggleBot(enable : any) {
+    toggleBotAction(enable);
 
     while (!isBotActionDisabled()) {
-      await travailler();
+      await work();
       await new Promise((resolve) => setTimeout(resolve, 10000));
     }
 
     console.log("Bot action is currently disabled. Exiting.......");
   }
 
-  async function deactivateBot() {
-    toggleBotAction(false);
-    if (isBotActionDisabled()) {
-      console.log("Bot action is currently disabled. Exiting.......");
-      return;
-    }
-  }
-  async function travailler() {
+  async function work() {
     if (!isGitRepository()) {
       console.log("This directory is not a Git repository. Exiting........");
       return;
     }
 
-    await configureGitCredentials(
-      getGitCredentials().username,
-      getGitCredentials().password
-    );
+    const { username, password } = getGitCredentials();
+    await configureGitCredentials(username, password);
 
     const git = simpleGit();
 

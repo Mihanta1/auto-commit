@@ -20,7 +20,7 @@ export async function configureGitCredentials(
 //activer ou désactiver les actions du bot
 export function toggleBotAction(enable: boolean) {
   process.env.BOT_ACTION_DISABLED = enable ? "false" : "true";
-  console.log(`Bot action is now ${enable ? "enabled" : "disabled"}.`);
+  //console.log(`Bot action is now ${enable ? "enabled" : "disabled"}.`);
 }
 
 // Fonction pour vérifier si l'action du bot est désactivée

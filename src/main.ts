@@ -30,7 +30,7 @@ async function main() {
     .command('disable')
     .description('Disable bot action')
     .alias('d')
-    .action(() =>isBotActionDisabled(true))
+    .action(() =>toggleBotAction(false))
 
 
   program.parse(process.argv);

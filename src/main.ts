@@ -27,7 +27,8 @@ async function main() {
     .action(() => activateBot())
   
   program
-    .
+    .command('disable')
+    .description('Disable ')
 
 
   program.parse(process.argv);

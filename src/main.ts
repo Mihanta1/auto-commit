@@ -54,7 +54,6 @@ async function main() {
 
   async function activateBot() {
     toggleBotAction(true);
-    console.log("Bot action is currently enabled");
 
     while (!isBotActionDisabled()) {
       await travailler();

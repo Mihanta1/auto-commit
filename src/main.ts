@@ -9,7 +9,7 @@ import {
   isBotActionDisabled,
 } from "./configFunctions";
 import { isGitRepository , countModifications } from "./gitFunctions";
-
+//test
 async function main() {
   const program = new commander.Command();
   program.version("1.0.0");

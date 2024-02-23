@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Helper for your commit",
   "main": "src/main.ts",
+  "bin":{
+    "acb" : "./src/main.ts"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",

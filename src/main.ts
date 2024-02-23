@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { argv } from "process";
 import commander from "commander";
 import simpleGit from "simple-git";

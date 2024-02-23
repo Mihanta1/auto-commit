@@ -1,6 +1,6 @@
 {
-  "name": "auto-commit-bot",
-  "version": "1.0.1",
+  "name": "acb",
+  "version": "1.0.2",
   "description": "Helper for your commit",
   "main": "src/main.ts",
   "bin":{

@@ -1,6 +1,6 @@
 {
   "name": "aucb",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Helper for your commit",
   "main": "src/main.ts",
   "bin":{

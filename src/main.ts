@@ -56,8 +56,8 @@ async function main() {
   
 
   async function toggleBot(enable:any) {
-    toggleBotAction(enable);
     console.log(usage); 
+    toggleBotAction(enable);
 
     while (!isBotActionDisabled()) {
       await work();

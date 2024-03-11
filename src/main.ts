@@ -9,8 +9,7 @@ import {
   isBotActionDisabled,
 } from "./configFunctions";
 import { isGitRepository , countModifications } from "./gitFunctions";
-const chalk = require('chalk');  
-const boxen = require('boxen');
+
 
 //test
 async function main() {

@@ -9,6 +9,9 @@ import {
   isBotActionDisabled,
 } from "./configFunctions";
 import { isGitRepository , countModifications } from "./gitFunctions";
+const chalk = require('chalk');  
+const boxen = require('boxen');
+
 //test
 async function main() {
   const program = new commander.Command();
@@ -41,7 +44,8 @@ async function main() {
     await toggleBot(false);
     return;
   }
-
+  const usage = chalk.keyword('violet')("\nUsage: aucb -e <enable>  -d <disable> \n"
+  + boxen(chalk.green("\n" + "Make all the commits for you" + "\n"), {padding: 1, borderColor: 'green', dimBorder: true}) + "\n");
   if (!isGitRepository()) {
     console.log("This directory is not a Git repository. Exiting........");
     return;
@@ -52,7 +56,7 @@ async function main() {
 
     while (!isBotActionDisabled()) {
       await work();
-      await new Promise((resolve) => setTimeout(resolve, 10000));
+      await new Promise((resolve) => setTimeout(resolve, 900000)); //15 mn 
     }
 
     console.log("Bot action is currently disabled. Exiting.......");

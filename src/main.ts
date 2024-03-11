@@ -51,6 +51,8 @@ async function main() {
     return;
   }
 
+  console.log(usage)
+
   async function toggleBot(enable:any) {
     toggleBotAction(enable);
 

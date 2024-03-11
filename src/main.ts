@@ -20,7 +20,13 @@ async function main() {
   program
     .option("-e, --enable", "Enable bot action")
     .option("-d, --disable", "Disable bot action");
-
+    const usage = chalk.keyword('violet')("\nUsage: aucb -e <enable>  -d <disable> \n"
+    + boxen(chalk.green("\n" + "Make all the commits for you" + "\n"), {padding: 1, borderColor: 'green', dimBorder: true}) + "\n");
+    if (!isGitRepository()) {
+      console.log("This directory is not a Git repository. Exiting........");
+      return;
+    }
+  
   program
     .command("enable")
     .description("Enable bot action")
@@ -35,6 +41,8 @@ async function main() {
 
   program.parse(process.argv);
 
+  console.log(usage)
+
   if (argv.includes("-e") || argv.includes("--enable")) {
     await toggleBot(true);
     return;
@@ -44,14 +52,7 @@ async function main() {
     await toggleBot(false);
     return;
   }
-  const usage = chalk.keyword('violet')("\nUsage: aucb -e <enable>  -d <disable> \n"
-  + boxen(chalk.green("\n" + "Make all the commits for you" + "\n"), {padding: 1, borderColor: 'green', dimBorder: true}) + "\n");
-  if (!isGitRepository()) {
-    console.log("This directory is not a Git repository. Exiting........");
-    return;
-  }
-
-  console.log(usage)
+  
 
   async function toggleBot(enable:any) {
     toggleBotAction(enable);

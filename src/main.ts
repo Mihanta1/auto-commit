@@ -32,7 +32,6 @@ async function main() {
     .description("Enable bot action")
     .alias("e")
     .action(() => {
-      console.log(usage); 
       toggleBot(true);
     });
 
@@ -58,6 +57,7 @@ async function main() {
 
   async function toggleBot(enable:any) {
     toggleBotAction(enable);
+    console.log(usage); 
 
     while (!isBotActionDisabled()) {
       await work();

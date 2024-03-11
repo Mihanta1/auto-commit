@@ -14,6 +14,12 @@ const boxen = require('boxen');
 
 //test
 async function main() {
+  const usage = chalk.keyword('violet')("\nUsage: aucb -e <enable>  -d <disable> \n"
+  + boxen(chalk.green("\n" + "Make all the commits for you" + "\n"), {padding: 1, borderColor: 'green', dimBorder: true}) + "\n");
+  if (!isGitRepository()) {
+    console.log("This directory is not a Git repository. Exiting........");
+    return;
+  }
   const program = new commander.Command();
   program.version("1.0.0");
 
@@ -25,7 +31,10 @@ async function main() {
     .command("enable")
     .description("Enable bot action")
     .alias("e")
-    .action(() => toggleBot(true));
+    .action(() => {
+      console.log(usage); 
+      toggleBot(true);
+    });
 
   program
     .command("disable")
@@ -63,13 +72,7 @@ async function main() {
       console.log("This directory is not a Git repository. Exiting........");
       return;
     }
-    const usage = chalk.keyword('violet')("\nUsage: aucb -e <enable>  -d <disable> \n"
-    + boxen(chalk.green("\n" + "Make all the commits for you" + "\n"), {padding: 1, borderColor: 'green', dimBorder: true}) + "\n");
-    if (!isGitRepository()) {
-      console.log("This directory is not a Git repository. Exiting........");
-      return;
-    }
-  console.log(usage)
+   
 
   
     const { username, password } = getGitCredentials();

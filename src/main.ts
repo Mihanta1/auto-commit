@@ -14,12 +14,6 @@ const boxen = require('boxen');
 
 //test
 async function main() {
-  const usage = chalk.keyword('violet')("\nUsage: aucb -e <enable>  -d <disable> \n"
-  + boxen(chalk.green("\n" + "Make all the commits for you" + "\n"), {padding: 1, borderColor: 'green', dimBorder: true}) + "\n");
-  if (!isGitRepository()) {
-    console.log("This directory is not a Git repository. Exiting........");
-    return;
-  }
   const program = new commander.Command();
   program.version("1.0.0");
 
@@ -56,7 +50,6 @@ async function main() {
   
 
   async function toggleBot(enable:any) {
-    console.log(usage); 
     toggleBotAction(enable);
 
     while (!isBotActionDisabled()) {

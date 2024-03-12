@@ -73,8 +73,8 @@ async function main() {
 
     const modificationsCount = await countModifications(git);
     if (modificationsCount < 1) {
-      console.error(
-        chalk.blue.underline.bold( "Number of modifications is less than 1. Please make at least 1 modification before committing.")
+      console.log(
+        chalk.blue.bold( "Number of modifications is less than 1. Please make at least 1 modification before committing.")
       );
       return;
     }

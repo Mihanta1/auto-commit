@@ -9,6 +9,7 @@ import {
   isBotActionDisabled,
 } from "./configFunctions";
 import { isGitRepository , countModifications } from "./gitFunctions";
+import chalk from 'chalk'
 //test
 async function main() {
   const program = new commander.Command();
@@ -59,7 +60,7 @@ async function main() {
 
   async function work() {
     if (!isGitRepository()) {
-      console.log("This directory is not a Git repository. Exiting........");
+      console.log(chalk.red("This directory is not a Git repository. Exiting........"));
       return;
     }
    
@@ -73,7 +74,7 @@ async function main() {
     const modificationsCount = await countModifications(git);
     if (modificationsCount < 1) {
       console.error(
-        "Number of modifications is less than 1. Please make at least 1 modification before committing."
+        chalk.blue.underline.bold( "Number of modifications is less than 1. Please make at least 1 modification before committing.")
       );
       return;
     }
